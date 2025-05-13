@@ -41,6 +41,11 @@ namespace PD2
 					Console.WriteLine("Input file doesnt exist. Are you sure you typed the filepath right?");
 					return;
 				}
+				else if (options.InputPath.Equals(options.OutputPath))
+				{
+                    Console.WriteLine("Input file is equal to Output file, it's safer to have two different files!");
+                    return;
+                }
 
 				try
 				{

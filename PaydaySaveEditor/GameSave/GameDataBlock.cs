@@ -9,7 +9,8 @@ namespace PD2.GameSave
 {
 	public class GameDataBlock : DataBlock
 	{
-		public Dictionary<Object, Object> Dictionary { get; set; }
+		private Dictionary<Object, Object> dictionary;
+        public Dictionary<Object, Object> Dictionary { get { return this.dictionary; } }
 
 		public GameDataBlock(BinaryReader br) : base(br)
 		{
@@ -19,12 +20,12 @@ namespace PD2.GameSave
 			// just a dictionary, but we assume that it must
 			// be as I haven't seen any saves that don't con-
 			// tain a dictionary as a root node
-			this.Dictionary = (Dictionary<Object, Object>) GameData.DeserializeData(dataBr);
+			this.dictionary = (Dictionary<Object, Object>) GameData.DeserializeData(dataBr);
 		}
 
 		new public byte[] ToArray()
 		{
-			this.data = GameData.SerializeData(Dictionary);
+			this.data = GameData.SerializeData(this.dictionary);
 			return base.ToArray();
 		}
 	}

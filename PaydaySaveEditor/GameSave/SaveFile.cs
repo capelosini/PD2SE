@@ -43,13 +43,20 @@ namespace PD2.GameSave
 		private GameDataBlock gamedata;
 		private DataBlock footer;
 
-		public Dictionary<Object, Object> GameData
+		public DataBlock HeaderBlock
+        {
+            get { return this.header; }
+        }
+        public GameDataBlock GameDataBlock
 		{
-			get { return gamedata.Dictionary; }
-			set { gamedata.Dictionary = value; }
+			get { return this.gamedata; }
 		}
+        public DataBlock FooterBlock
+        {
+            get { return this.footer; }
+        }
 
-		public SaveFile(String filePath, bool encrypted = true)
+        public SaveFile(String filePath, bool encrypted = true)
 		{
 			this.filePath = filePath;
 

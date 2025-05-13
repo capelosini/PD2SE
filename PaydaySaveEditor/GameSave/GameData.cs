@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PD2.GameSave
 {
-	public class GameData
+	public static class GameData
 	{
 		private enum DataType : byte
 		{
@@ -117,7 +117,8 @@ namespace PD2.GameSave
 			{
 				object key = DeserializeData(br);
 				object value = DeserializeData(br);
-				dictionary.Add(key, value);
+				if (key != null)
+					dictionary.Add(key, value);
 			}
 
 			return dictionary;
