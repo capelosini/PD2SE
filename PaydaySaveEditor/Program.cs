@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using CommandLine.Text;
+using PD2.ConsoleUtils;
 using PD2.GameSave;
 using System;
 using System.Collections.Generic;
@@ -36,14 +37,16 @@ namespace PD2
 
 			if (CommandLine.Parser.Default.ParseArguments(args, options))
 			{
-				if(!File.Exists(options.InputPath))
+                ConsoleLogging.ShowTitle();
+
+                if (!File.Exists(options.InputPath))
 				{
-					Console.WriteLine("Input file doesnt exist. Are you sure you typed the filepath right?");
+					ConsoleLogging.Log("Input file doesn't exist. Are you sure you typed the filepath right?", LogLevel.Error);
 					return;
 				}
 				else if (options.InputPath.Equals(options.OutputPath))
 				{
-                    Console.WriteLine("Input file is equal to Output file, it's safer to have two different files!");
+                    ConsoleLogging.Log("Input file is equal to Output file, it's safer to have two different files!", LogLevel.Error);
                     return;
                 }
 
@@ -52,7 +55,9 @@ namespace PD2
 					SaveFile file = new SaveFile(options.InputPath, !options.EncryptOutput);
 					file.Save(options.OutputPath, options.EncryptOutput);
 				}
-				catch (Exception e) { Console.WriteLine("An unknown error has occured: {0}", e.Message); }
+				catch (Exception e) { 
+					ConsoleLogging.Log($"An unknown error has occured: {e.Message}", LogLevel.Error);
+				}
 			}
 		}
 	}

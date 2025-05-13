@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleUtils\ColorConsole.cs" />
+    <Compile Include="ConsoleUtils\ConsoleLogging.cs" />
     <Compile Include="GameSave\DataBlock.cs" />
     <Compile Include="GameSave\UnencodedString.cs" />
     <Compile Include="GameSave\Encryption.cs" />
