@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PAYDAY 2 Save Editor")]
-[assembly: AssemblyCopyright("https://github.com/seefo/PD2SaveEditor/")]
+[assembly: AssemblyCopyright("https://github.com/capelosini/PD2SE")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
