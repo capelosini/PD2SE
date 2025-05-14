@@ -2,7 +2,7 @@ PAYDAY 2 Save Editor
 ===================
 This is a save editor for the PAYDAY 2 video game, it currently only supports the retail version on PC.  All data types, encryption, hashing, and encoding have been reversed and re-implemented. This tool can rebuild the entire save file and it's data.  
 
-You may download the latest version here: https://github.com/seefo/PD2SE/releases
+You may download the latest version here: https://github.com/capelosini/PD2SE/releases
 
 **~~A fork that includes a UI may be found here: https://github.com/isqrl/PayDay2SaveView (credit to [@isqrl](https://github.com/isqrl))~~**
 
