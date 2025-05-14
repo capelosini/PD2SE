@@ -5,9 +5,7 @@ using PD2.GameSave;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using System.Threading;
 
 namespace PD2
 {
@@ -24,7 +22,10 @@ namespace PD2
 			[Option('i', "inputPath", Required = true, HelpText = "Path to the PAYDAY 2 game save that you'd like to process.")]
 			public String InputPath { get; set; }
 
-			[HelpOption]
+            [Option('m', "editorMode", DefaultValue = false, HelpText = "Open the editor to edit the Save File and saves to output file encrypted.")]
+            public bool EditorMode { get; set; }
+
+            [HelpOption]
 			public string GetUsage()
 			{
 				return HelpText.AutoBuild(this, (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
@@ -53,7 +54,15 @@ namespace PD2
 				try
 				{
 					SaveFile file = new SaveFile(options.InputPath, !options.EncryptOutput);
+					if (options.EditorMode)
+					{
+						ConsoleLogging.Log("Opening Editor...", LogLevel.Info);
+						Thread.Sleep(1000);
+						DictionaryEditor.Open(file.GameDataBlock.Dictionary);
+                        options.EncryptOutput = true;
+                    }
 					file.Save(options.OutputPath, options.EncryptOutput);
+                    ConsoleLogging.Log($"Saved the modded/decrypted Save File at '{options.OutputPath}'", LogLevel.Info);
 				}
 				catch (Exception e) { 
 					ConsoleLogging.Log($"An unknown error has occured: {e.Message}", LogLevel.Error);
