@@ -5,6 +5,7 @@ using PD2.GameSave;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace PD2
@@ -45,8 +46,8 @@ namespace PD2
 					ConsoleLogging.Log("Input file doesn't exist. Are you sure you typed the filepath right?", LogLevel.Error);
 					return;
 				}
-				else if (options.InputPath.Equals(options.OutputPath))
-				{
+				else if (File.Exists(options.OutputPath) && Path.GetFullPath(options.OutputPath) == Path.GetFullPath(options.InputPath)) // options.InputPath.Equals(options.OutputPath)
+                {
                     ConsoleLogging.Log("Input file is equal to Output file, it's safer to have two different files!", LogLevel.Error);
                     return;
                 }
